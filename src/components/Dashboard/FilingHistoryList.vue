@@ -823,6 +823,9 @@ export default class FilingHistoryList extends Mixins(
               // use display name for primary document's title
               if (prop === item.name) title = item.displayName
               else title = this.filingTypeToName(prop as FilingTypes, null, true)
+              // SP/GP output filter
+              const changeOfRegs = ['Change of Proprietor Registration', 'Change of Partnership Registration']
+              if (changeOfRegs.includes('item.displayName')) title = 'Change of Registration Application'
               const date = this.dateToYyyyMmDd(item.submittedDate)
               const filename = `${this.getIdentifier} ${title} - ${date}.pdf`
               const link = legalFiling[prop] as string
